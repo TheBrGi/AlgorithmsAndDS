@@ -7,11 +7,13 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.TextView;
 
 
@@ -132,11 +134,12 @@ public class MainActivity extends ActionBarActivity
                                  Bundle savedInstanceState) {
 
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            Bundle args=getArguments();
-            int i=args.getInt(ARG_SECTION_NUMBER);
-            TextView t=(TextView)rootView.findViewById(R.id.section_label);
-            t.setText("Capitolo "+i+"\nArgomento da inserire");//TODO: inserire argomento qui
-
+            Bundle args = getArguments();
+            int i = args.getInt(ARG_SECTION_NUMBER);
+            WebView t;
+            t = (WebView) rootView.findViewById(R.id.section_label);
+            t.loadUrl("file:///android_asset/"+i+".htm");//TODO: inserire argomento qui
+            t.getSettings().setBuiltInZoomControls(true);
             return rootView;
         }
 
